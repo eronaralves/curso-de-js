@@ -30,6 +30,8 @@ if(nome[0] === "R"){
     console.log("Seu nome não comeca com R")
 }
 
+//Exercicio Bonus
+
 let sobrenome = "Alves"
 
 if(/*Nao conseguir fazer essa parte*/|| nome[0] == "E") {
