@@ -22,7 +22,9 @@ if(mes === "Janeiro" || mes === "Dezembro") {
     console.log("Esse não é o seu mes")
 }
 
-let nome = "aronar"
+//Exercicio Bonus
+
+let nome = "Eronar"
 
 if(nome[0] === "R"){
     console.log("Seu nome comeca com R")
@@ -30,7 +32,6 @@ if(nome[0] === "R"){
     console.log("Seu nome não comeca com R")
 }
 
-//Exercicio Bonus
 
 let sobrenome = "Alves"
 
