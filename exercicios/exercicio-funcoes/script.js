@@ -31,5 +31,5 @@ function conta(n) {
     return n * 3
 }
 
-conta(7)
+
 console.log(conta(7))
