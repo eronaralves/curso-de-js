@@ -52,8 +52,6 @@ let cadastro = [
     }
 ]
 
-console.log(cadastro[0].amigos[1])
-console.log(cadastro[1].amigos[0])
-console.log(cadastro[2].amigos[0])
-console.log(cadastro[3].amigos[0])
-console.log(cadastro[4].amigos[3])
+console.log(cadastro[0].amigos[1], cadastro[1].amigos[0],cadastro[2].amigos[0], cadastro[3].amigos[0], cadastro[4].amigos[3])
+
+
