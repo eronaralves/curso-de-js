@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, {Component} from "react"
+
+class calc extends Component{
+
+  state = {
+      meuDinheiro: 20,
+
+    frutas: [
+      {
+        nome: "Banana",
+        preco: 5
+      },
+      {
+        nome: "Maca",
+        preco: 10
+      },
+      {
+        nome: "Manga",
+        preco: 15
+      }
+    ]
+  }
+
+  render(){
+    return(
+      <div>
+        <div>
+          <h1>Loja de Frutas</h1>
+          <p>R$ {this.state.meuDinheiro}</p>
+        </div>
+        <div>
+          <div>
+            <h2>{this.state.frutas[0].nome}</h2>
+            <span>{this.state.frutas[0].preco}</span>
+            <button></button>
+          </div>
+          <div>
+            <h2>{this.state.frutas[1].nome}</h2>
+            <span>{this.state.frutas[1].preco}</span>
+          </div>
+          <div>
+          <h2>{this.state.frutas[2].nome}</h2>
+          <span>{this.state.frutas[2].preco}</span>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default calc
