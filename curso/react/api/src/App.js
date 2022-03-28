@@ -26,18 +26,25 @@ export default class App extends React.Component {
         
         this.setState({
             listFilmes: filmes,
-            listFilmesPesquisados:[]
+            
         })   
         
     }
 
     getFilmes = () => {
-         return this.setState({
-             listFilmesPesquisados: this.state.listFilmes.title.filter((item) => item.includes("E"))
-         })
-    
-       
+        
+        return this.setState({
+            listFilmesPesquisados: this.state.listFilmes.map((item) => (
+                <ul>
+                    <li>{item.title}</li>
+                </ul>
+            ))
+        })
+            
+                
+            
     }
+  
    
     
 
@@ -54,6 +61,8 @@ export default class App extends React.Component {
                 <button onClick={this.getFilmes}>Filmes Com E</button>
                 
                 {this.state.listFilmesPesquisados}
+                    
+               
                    
                 
                 {/* {this.state.listFilmes.map((item) => (

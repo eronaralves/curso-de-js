@@ -26,9 +26,26 @@ export default class App extends React.Component {
         
         this.setState({
             listFilmes: filmes,
-            listFilmesPesquisados:[]
+            
         })   
         
+    }
+
+    
+
+
+    getFilmes = () => {
+      const {listFilmes, listFilmesPesquisados} = this.state
+      
+
+        return this.setState({
+          listFilmesPesquisados: listFilmes.map((item) => (
+              <ul>
+                <li>{item.title}</li>
+              </ul>
+            
+          ))
+        })
     }
 
   
@@ -38,8 +55,8 @@ export default class App extends React.Component {
 
 
     render(){
-        console.log(this.state.listFilmes.title)
         
+        console.log(this.state.listFilmesPesquisados)
         return(
             <div>
                 <h1>Filmes</h1>
@@ -47,6 +64,7 @@ export default class App extends React.Component {
                 
                 <button onClick={this.getFilmes}>Filmes Com E</button>
                 
+                {this.state.listFilmesPesquisados}
                 
                    
                 
