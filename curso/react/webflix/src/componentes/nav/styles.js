@@ -8,6 +8,7 @@ export const Container = styled.div`
     justify-content: center;
 
     background: #000;
+    z-index: 3;
 
     position: fixed;
     top: 0;
@@ -15,9 +16,9 @@ export const Container = styled.div`
 
 export const Content = styled.nav`
     width: 100%;
-    max-width: 1340px;
+    max-width: 1280px;
     height: 50px;
-
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,22 +32,24 @@ export const BoxLogo = styled.div`
     display: flex;
     align-items: center;
 
-    margin: 0px 64px;
+    
 
 `
 
 export const Boxicons = styled.div`
-    height: 100%;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
-
-    margin: 0px 32px;
+  display: flex;
+  align-items: center;
+  margin: 0px 32px;
+  
+    
 `
 
 export const Title = styled.h1`
     color: red;
     font-size: 20px;
+    margin: 10px;
 
     &:hover{
         cursor: pointer;
@@ -57,9 +60,12 @@ export const Title = styled.h1`
 export const List = styled.ul`
     display: flex;
     list-style: none;
+    margin: 0px 10px;
 
-    li { 
+    a { 
         margin: 0px 8px;
+        color: #fff;
+        text-decoration: none;
     
         &:hover {
             opacity: .5;

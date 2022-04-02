@@ -7,10 +7,14 @@ import {
   Route
 } from "react-router-dom"
 
-import Header from "./componentes/header"
+
+
+
 import Home from "./pages/home";
 import Filmes from "./pages/filmes"
 import Series from "./pages/series"
+
+
 
 export default class App extends React.Component {
 
@@ -18,13 +22,15 @@ export default class App extends React.Component {
     
     return (
       <Router>
-        <Header/>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="filmes" element={<Filmes/>}/>
-          <Route path="series" element={<Series/>}/>
-          
-        </Routes>
+        
+  
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="filmes" element={<Filmes/>}/>
+            <Route path="series" element={<Series/>}/>
+            
+          </Routes>
+        
       </Router>
     )
   }  
