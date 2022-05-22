@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   Container,
   Black,
@@ -34,134 +34,102 @@ const Button = styled.button`
   color: #fff;
 `;
 
-export default class App extends React.Component {
-  state = {
-    msg: "Bem vindo ao QUIZ VNW",
-    background: false,
-    correctAnswert: "Eronar",
-    GetValueInput: "",
-    StartGame: false,
-    contador: 0,
-    meuIntervalo: null,
-    error: false
-  };
+export default function App() {
 
-  changeColor = () => {
-    if (this.state.background) {
+  const [msg, setMsg] = useState("Bem vindo ao QUIZ VNW")
+  const [background, setBackground] = useState(false)
+  const [correctAnswert, setCorrectAnswert] = useState("Eronar")
+  const [GetValueInput, setGetValueInput] = useState("")
+  const [StartGame, setStartGame] = useState(false)
+  const [contador, setContador] = useState(0)
+  const [meuIntervalo, setmeuIntervalo] = useState(null)
+  const [error, setError] = useState(false)
+
+  const changeColor = () => {
+    if (background) {
       document.body.style.backgroundColor = "LightSeaGreen";
+      
+      setBackground(false)
 
-      this.setState({
-        background: false
-      });
     } else {
       document.body.style.backgroundColor = "black";
-
-      this.setState({
-        background: true
-      });
+      setBackground(true)
     }
   };
 
-  getValue = (e) => {
-    this.setState({
-      GetValueInput: e.target.value.toLowerCase()
-    });
-
-    console.log(this.state.GetValueInput);
+  const getValue = (e) => {
+    setGetValueInput( e.target.value.toLowerCase())
   };
 
-  EnviarAnswert = () => {
-    const { GetValueInput, correctAnswert } = this.state;
+  const EnviarAnswert = () => {;
 
     if (GetValueInput !== "") {
-      this.setState({
-        error: false
-      });
+      setError(false)
 
       setTimeout(() => {
         if (GetValueInput === correctAnswert) {
-          this.setState({
-            msg: "PARABENS ACERTOUUUUU"
-          });
+          setMsg("PARABENS ACERTOUUUUU")
         } else {
-          this.setState({
-            msg: "QUE PENA VOCE ERROU "
-          });
+          setMsg("QUE PENA VOCE ERROU ")
         }
       }, 1000);
 
-      clearInterval(this.state.meuIntervalo);
+      clearInterval(meuIntervalo);
     } else {
-      this.setState({
-        error: true
-      });
+      setError(true)
     }
   };
 
-  startGame = () => {
-    this.setState({
-      StartGame: true
-    });
+  const startGame = () => {
+    setStartGame(true)
 
     const meuIntervalo = setInterval(() => {
-      if (this.state.contador < 10) {
-        this.setState({
-          contador: this.state.contador + 1
-        });
+      if (contador < 10) {
+        setContador(contador +1)
       } else {
         alert("ACABOU O TEMPO");
         clearInterval(meuIntervalo);
       }
     }, 1000);
 
-    this.setState({
-      meuIntervalo: meuIntervalo
-    });
+    setmeuIntervalo(meuIntervalo)
+
   };
 
-  playAgain = () => {
-    this.setState({
-      StartGame: false,
-      contador: 0,
-      msg: "Bem vindo ao QUIZ VNW",
-      error: false,
-      GetValueInput: ""
-    });
+  const playAgain = () => {
+    setStartGame(false)
+    setMsg("Bem vindo ao Quiz VNW")
+    setContador(0)
+    setGetValueInput("")
+    setError(false)
 
-    clearInterval(this.state.meuIntervalo);
+    clearInterval(meuIntervalo);
   };
 
-  componentDidMount() {
-    this.setState({
-      correctAnswert: this.state.correctAnswert.toLowerCase()
-    });
+  useEffect(() => {
+    setCorrectAnswert(correctAnswert.toLowerCase())
+  }, []) 
 
-    // setInterval(() => {
-    //   this.setState({ msg: this.state.msg === "OOI" ? "TROQUEI" : "OOI" });
-    // }, 1000);
-  }
-
-  render() {
     return (
       <Container>
-        <Black estado={this.state.background}>
+        <Black estado={background}>
           <GlobalStyle />
           <Header>
-            <h1>{this.state.msg}</h1>
+            <h1>{msg}</h1>
 
-            <Button onClick={this.changeColor}>MUDAR COR</Button>
+            <Button onClick={changeColor}>MUDAR COR</Button>
           </Header>
 
-          {!this.state.StartGame ? (
+          {!StartGame ? (
             <BoxStart>
               <p>Adivinhe o aluno em 10 segundos</p>
-              <Button onClick={this.startGame}>Comecar Jogo</Button>
+              <Button onClick={startGame}>Comecar Jogo</Button>
             </BoxStart>
           ) : (
             <Content>
               <BoxContador>
-                {this.state.StartGame && (
-                  <h2 estado={this.state.background}>{this.state.contador}</h2>
+                {StartGame && (
+                  <h2 estado={background}>{contador}</h2>
                 )}
               </BoxContador>
               <div>
@@ -177,16 +145,16 @@ export default class App extends React.Component {
                   <div>
                     <input
                       type="text"
-                      onChange={this.getValue}
+                      onChange={getValue}
                       placeholder="digite um nome"
                     />
-                    {this.state.error && <p>Digite algo</p>}
+                    {error && <p>Digite algo</p>}
                   </div>
-                  <Button onClick={this.EnviarAnswert}>Enviar</Button>
+                  <Button onClick={EnviarAnswert}>Enviar</Button>
                 </BoxInput>
 
                 <BoxButtonPlayAgain>
-                  <Button onClick={this.playAgain}>Jogar Denovo</Button>
+                  <Button onClick={playAgain}>Jogar Denovo</Button>
                 </BoxButtonPlayAgain>
               </div>
             </Content>
@@ -194,6 +162,6 @@ export default class App extends React.Component {
         </Black>
       </Container>
     );
-  }
+  
 }
 
